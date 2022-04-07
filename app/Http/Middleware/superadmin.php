@@ -22,7 +22,7 @@ class superadmin
         }
 
         if (Auth::user()->role == 'admin') {
-            return redirect()->route('admin');
+            return redirect()->route('admin/dashboard');
         }
 
         if (Auth::user()->role == 'superadmin') {

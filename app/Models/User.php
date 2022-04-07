@@ -18,8 +18,11 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'providerid',
         'name',
         'email',
+        'phone',
+        'role',
         'password',
     ];
 
@@ -41,4 +44,29 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function admin()
+    {
+        return $this->hasOne(admin::class);
+    }
+    public function vendor()
+    {
+        return $this->hasOne(vendor::class);
+    }
+    public function customer()
+    {
+        return $this->hasOne(customer::class);
+    }
+
+    public function reports()
+    {
+        return $this->hasMany(report::class);
+    }
+
+    // public function setPicAttribute($value)
+    // {
+    //     $this->attributes['pic'] = 'stotage/' . $value;
+    // }
+
+
 }

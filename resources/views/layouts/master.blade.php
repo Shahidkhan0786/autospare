@@ -7,6 +7,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  @yield('meta')
   <title>AutoSphere</title>
 
   <!-- Google Font: Source Sans Pro -->
@@ -15,6 +16,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="{{asset('css/all.min.css')}}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{asset('css/adminlte.min.css')}}">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" >
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<link  href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" rel="stylesheet">
+<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -194,35 +202,53 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
+               <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon fas fa-tachometer-alt"></i>
+                  <p>
+                    dashboard
+                    {{-- <i class="right fas fa-angle-left"></i> --}}
+                  </p>
+                </a>
+                
+              </li>
           <li class="nav-item menu-open">
-            <a href="#" class="nav-link active">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-user-alt"></i>
               <p>
-                Starter Pages
+                Users
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link active">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Active Page</p>
+                <a href="/superadmin/admin" class="nav-link">
+                  {{-- <i class="far fa-circle nav-icon"></i> --}}
+                  <p class="ml-3">admin</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Inactive Page</p>
+                <a href="/superadmin/vendor" class="nav-link">
+                  {{-- <i class="far fa-circle nav-icon"></i> --}}
+                  <p class="ml-3">vendor</p>
                 </a>
               </li>
             </ul>
           </li>
+          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
+        </form>
           <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+            <a href="{{ route('logout') }}" class="nav-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+              {{-- <i class="nav-icon fas fa-sign-out"></i> --}}
+              <i class="nav-icon fa-solid fa-right-from-bracket"></i>
+
+
               <p>
-                Simple Link
-                <span class="right badge badge-danger">New</span>
+
+                Logout
+
+                {{-- <span class="right badge badge-danger">New</span> --}}
               </p>
             </a>
           </li>
@@ -284,10 +310,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- REQUIRED SCRIPTS -->
 
 <!-- jQuery -->
-<script src="{{asset('js/jquery.min.js')}}"></script>
+{{-- <script src="{{asset('js/jquery.min.js')}}"></script> --}}
 <!-- Bootstrap 4 -->
-<script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
+{{-- <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script> --}}
 <!-- AdminLTE App -->
 <script src="{{asset('js/adminlte.min.js')}}"></script>
+
+@yield('script')
 </body>
 </html>
